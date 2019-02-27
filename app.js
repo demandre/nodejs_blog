@@ -50,6 +50,17 @@ app.use(function logRequest (req, res, next) {
   next()
 });
 
+// Redirect not logged in users
+app.use(function redirectNotLoggedIn (req, res, next) {
+  if (req.url !== '/') { // if not login page
+    if (req.session.id === undefined) { // and not connected
+      res.redirect('/'); // redirect to login page
+      return;
+    }
+  }
+  next();
+});
+
 // declaring routes
 var routes = require('./routes/');
 
