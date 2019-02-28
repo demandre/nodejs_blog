@@ -1,0 +1,56 @@
+extends ./header.pug
+append content
+    if message
+        h1= message
+    h2 Create a user
+    form.login-form.form-horizontal(method='post', action='/users/create')
+        div.form-group
+            label.col-sm-4 First Name
+            div.col-sm-8
+                input.form-control(
+                placeholder='User first name',
+                required=true,
+                name='first_name',
+                type='text')
+        div.form-group
+            label.col-sm-4 Name
+            div.col-sm-8
+                input.form-control(placeholder='User name',
+                required=true,
+                name='name',
+                type='text')
+        div.form-group
+            label.col-sm-4 Mail
+            div.col-sm-8
+                input.form-control(placeholder='user@mail.com',
+                required=true,
+                name='mail',
+                type='email')
+        div.form-group
+            label.col-sm-4 Password
+            div.col-sm-8
+                input.form-control(placeholder='User password',
+                required=true,
+                name='password')
+        div.form-group
+            label.col-sm-4 Avatar link
+            div.col-sm-8
+                input.form-control(placeholder='User avatar link',
+                required=true,
+                name='avatar_img_path',
+                type='text')
+        div.form-group
+            div.col-sm-offset-4.col-sm-8
+                button.login.btn.btn-primary(type='submit') Create user
+    h2 Search a user
+    form.login-form.form-horizontal(method='post', action='/users/search')
+        div.form-group
+            div.col-sm-8
+                input.form-control(
+                placeholder='Search by user name, first name and email',
+                required=true,
+                name='search_terms',
+                type='text')
+        div.form-group
+            div.col-sm-offset-4.col-sm-8
+                button.login.btn.btn-success(type='submit') Search user
