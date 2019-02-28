@@ -20,10 +20,6 @@ router.post('/', function(req,res) {
       if(results.length > 0) {
         // Save in session - connect the user
         req.session.user_id=results[0].user_id;
-        req.session.name=results[0].name;
-        req.session.first_name=results[0].first_name;
-        req.session.mail=results[0].mail;
-        req.session.avatar_img_path=results[0].avatar_img_path;
         req.session.is_admin=results[0].is_admin;
         // Redirect to user page
         res.redirect('/user');
