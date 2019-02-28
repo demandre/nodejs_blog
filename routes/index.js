@@ -7,6 +7,7 @@ var usersRoutes = require('./users');
 var publishRoutes = require('./publish');
 var articlesRoutes = require('./articles');
 var commentRoutes = require('./comment');
+var commentsRoutes = require('./comments');
 
 router.use(userRoutes);
 router.use(loginRoutes);
@@ -15,5 +16,6 @@ router.use(usersRoutes);
 router.use(publishRoutes);
 router.use(articlesRoutes);
 router.use(commentRoutes);
+router.use(commentsRoutes);
 
 module.exports = router;

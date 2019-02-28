@@ -1,0 +1,18 @@
+extends ./header.pug
+append content
+    if message
+        h1= message
+    if comments
+        each comment in comments
+            div.card
+                div.card-header
+                    img.my-0.mr-md-auto(src=comment.avatar_img_path, alt='', width='50', height='50')
+                    p=comment.user_name
+            div.card-body
+                ul.list-group
+                    li.list-group-item=comment.date
+                    li.list-group-item=comment.content
+                    li.list-group-item
+                    a.btn.btn-danger(href="/comment/delete/?id=" + comment.comment_id) Delete
+                    a.btn.btn-primary(href="/comment/modify/?id=" + comment.comment_id) Modify
+
