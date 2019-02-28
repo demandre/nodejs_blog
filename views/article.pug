@@ -1,0 +1,18 @@
+extends ./header.pug
+append content
+    if message
+        h1= message
+    if article
+        div.card
+            div.card-header=article.title
+        div.card-body
+            ul.list-group
+                li.list-group-item
+                    img.my-0.mr-md-auto(src=article.cover_img_path, alt='', width='200', height='100')
+                li.list-group-item=article.content
+                li.list-group-item=article.date
+                li.list-group-item
+                    if is_admin
+                        a.btn.btn-primary(href="/articles/modify/?id="+article.article_id) Modify
+                        a.btn.btn-danger(href="/articles/delete/?id="+article.article_id) Delete
+
