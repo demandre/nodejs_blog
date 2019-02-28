@@ -4,6 +4,7 @@ var path = require('path');
 var cookieSession = require('cookie-session');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var url = require('url');
 var app = express();
 // Vars
 var port = process.env.PORT || '3000';
@@ -57,6 +58,12 @@ app.use(function redirectNotLoggedIn (req, res, next) {
       return;
     }
   }
+  next();
+});
+
+// Parse url params and store in request
+app.use(function parseUrlParams (req, res, next) {
+  req.urlParams = url.parse(req.url, true).query;
   next();
 });
 
