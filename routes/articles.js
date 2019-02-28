@@ -46,7 +46,7 @@ router.get('/articles/see', function(req, res, next) {
       }
     });
   } else {
-    res.redirect('/articles', {'is_admin': req.session.is_admin});
+    res.redirect('/articles');
   }
 });
 
@@ -69,7 +69,35 @@ router.get('/articles/modify', function(req, res, next) {
         }
       });
     } else {
-      res.redirect('/articles', {'is_admin': req.session.is_admin});
+      res.redirect('/articles');
+    }
+  } else {
+    res.redirect('/user');
+  }
+});
+
+/* Post articles modify */
+router.post('/articles/modify', function(req, res, next) {
+  if(req.session.is_admin) {
+    if(req.urlParams.id) {
+      var updateArticleQuery = "update article " +
+        "set title ='" + req.body.title + "'," +
+        "content ='" + req.body.content + "'," +
+        "cover_img_path = '" + req.body.cover_img_path + "'," +
+        "date = NOW() " +
+        "where article_id=" + req.urlParams.id + ";";
+
+      res.locals.connection.query(updateArticleQuery, function (error, articleResults, fields) {
+        if(error != null) {
+          console.log('error');
+          res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
+        } else {
+          res.render('articles', {'message': 'The article has been updated!', 'is_admin': req.session.is_admin});
+        }
+      });
+    } else {
+      console.log('redirect');
+      res.redirect('/articles');
     }
   } else {
     res.redirect('/user');

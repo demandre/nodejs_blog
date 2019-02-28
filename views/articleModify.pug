@@ -4,7 +4,7 @@ append content
         h1= message
     h2 Modify article
     if article
-        form.login-form.form-horizontal(method='post', action='/article/modify')
+        form.login-form.form-horizontal(method='post', action='/articles/modify/?id='+article.article_id)
             div.form-group
                 label.col-sm-4 Title
                 div.col-sm-8
