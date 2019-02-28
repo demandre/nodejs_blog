@@ -15,14 +15,28 @@ append content
                     if is_admin
                         a.btn.btn-primary(href="/articles/modify/?id="+article.article_id) Modify
                         a.btn.btn-danger(href="/articles/delete/?id="+article.article_id) Delete
-    if comments
-        each comment in comments
+        form.login-form.form-horizontal(method='post', action='/comment/add/?article_id='+article.article_id)
             div.card
-                div.card-header
-                    img.my-0.mr-md-auto(src=comment.avatar_img_path, alt='', width='50', height='50')
-                    p=comment.user_name
+                div.card-header Comment this article
             div.card-body
-                ul.list-group
-                    li.list-group-item=comment.date
-                    li.list-group-item=comment.content
+                div.form-group
+                    label.col-sm-4
+                    div.col-sm-8
+                        textarea.form-control(placeholder='Your comment',
+                        required=true,
+                        name='content')
+
+                div.form-group
+                    div.col-sm-offset-4.col-sm-8
+                        button.login.btn.btn-primary(type='submit') Publish Comment
+        if comments
+            each comment in comments
+                div.card
+                    div.card-header
+                        img.my-0.mr-md-auto(src=comment.avatar_img_path, alt='', width='50', height='50')
+                        p=comment.user_name
+                div.card-body
+                    ul.list-group
+                        li.list-group-item=comment.date
+                        li.list-group-item=comment.content
 
