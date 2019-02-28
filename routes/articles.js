@@ -96,7 +96,29 @@ router.post('/articles/modify', function(req, res, next) {
         }
       });
     } else {
-      console.log('redirect');
+      res.redirect('/articles');
+    }
+  } else {
+    res.redirect('/user');
+  }
+});
+
+/* Get articles delete */
+router.get('/articles/delete', function(req, res, next) {
+  if(req.session.is_admin) {
+    if(req.urlParams.id) {
+      var deleteArticleQuery = 'DELETE from article ' +
+        "where article_id=" + req.urlParams.id + ";";
+
+      res.locals.connection.query(deleteArticleQuery, function (error, articleResults, fields) {
+        if(error != null) {
+          console.log('error');
+          res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
+        } else {
+          res.render('articles', {'message': 'The article has been deleted!', 'is_admin': req.session.is_admin});
+        }
+      });
+    } else {
       res.redirect('/articles');
     }
   } else {
