@@ -31,7 +31,6 @@ app.use(function mysqlConnect (req, res, next){
     'password' : 'joris',
     'database' : 'node_blog'
   });
-  //res.locals.connect();
   next();
 });
 
@@ -53,7 +52,7 @@ app.use(function logRequest (req, res, next) {
 // Redirect not logged in users
 app.use(function redirectNotLoggedIn (req, res, next) {
   if (req.url !== '/') { // if not login page
-    if (req.session.id === undefined) { // and not connected
+    if (req.session.user_id === undefined) { // and not connected
       res.redirect('/'); // redirect to login page
       return;
     }
