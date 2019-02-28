@@ -1,9 +1,9 @@
 var router = require('express').Router();
 
 var userRoutes = require('./user');
-var generalRoutes = require('./general')
+var loginRoutes = require('./login')
 
 router.use(userRoutes);
-router.use(generalRoutes);
+router.use(loginRoutes);
 
 module.exports = router;

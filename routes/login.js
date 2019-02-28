@@ -1,10 +1,11 @@
 var router = require('express').Router();
 
-/* GET homepage / login page */
+/* Get homepage / login page */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Home', message: 'Hello! Please sign-in' });
 });
 
+/* Post of login form */
 router.post('/', function(req,res) {
   try {
     var email = req.body.email;
@@ -33,12 +34,6 @@ router.post('/', function(req,res) {
   } catch {
     res.render('index', { title: 'Home', message: 'We cannot connect you... Try again later!' });
   }
-});
-
-/* GET faq page */
-router.get('/faq', function(req, res) {
-  console.log('faq');
-  res.send('<p>some faq Html</p>');
 });
 
 module.exports = router;
