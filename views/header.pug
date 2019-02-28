@@ -1,9 +1,23 @@
+extends ../node_modules/pug-bootstrap/_bootstrap.pug
 block body
-    nav.site-header.sticky-top.py-1
-        .container.d-flex.flex-column.flex-md-row.justify-content-between
-            a.py-2.d-none.d-md-inline-block(href='') Articles
-            a.py-2.d-none.d-md-inline-block(href='/publish') Publish
-            a.py-2.d-none.d-md-inline-block(href='/users') Users
-            a.py-2.d-none.d-md-inline-block(href='/comments') Comments
-            a.py-2.d-none.d-md-inline-block(href='/user') Account
-            a.py-2.d-none.d-md-inline-block(href='/logout') logout
+    block header
+    nav.navbar.navbar-default.navbar-fixed-top
+        .container
+            #navbar.navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href='/articles') Articles
+                    li
+                        a(href='/publish') Publish
+                    li
+                        a(href='/users') Users
+                    li
+                        a(href='/comments') Comments
+                    li
+                        a(href='/user') Account
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href='./logout')
+                            | Logout
+                            span.sr-only (current)
+    block content
