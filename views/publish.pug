@@ -1,0 +1,31 @@
+extends ./header.pug
+append content
+    if message
+        h1= message
+    h2 Publish an article
+    form.login-form.form-horizontal(method='post', action='/publish')
+        div.form-group
+            label.col-sm-4 Title
+            div.col-sm-8
+                input.form-control(
+                placeholder='Article title',
+                required=true,
+                name='title',
+                type='text')
+        div.form-group
+            label.col-sm-4 Content
+            div.col-sm-8
+                textarea.form-control(placeholder='Article content',
+                required=true,
+                name='content')
+        div.form-group
+            label.col-sm-4 Cover
+            div.col-sm-8
+                input.form-control(placeholder='Cover img link',
+                required=true,
+                name='cover_img_path',
+                type='text')
+
+        div.form-group
+            div.col-sm-offset-4.col-sm-8
+                button.login.btn.btn-primary(type='submit') Publish article
