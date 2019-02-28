@@ -35,4 +35,18 @@ router.post('/user', function(req, res, next) {
     }
   });
 });
+
+/* Get user delete */
+router.get('/user/delete', function(req, res, next) {
+  var deleteUserQuery = 'DELETE from user ' +
+      "where user_id=" + req.session.user_id + ";";
+
+  res.locals.connection.query(deleteUserQuery, function (error, results, fields) {
+    if(error != null) {
+      res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
+    } else {
+      res.render('index', {'message': 'You have been deleted'});
+    }
+  });
+});
 module.exports = router;
