@@ -1,8 +1,7 @@
-extends ../node_modules/pug-bootstrap/_bootstrap.pug
-block body
+extends ./layout.pug
+block content
     h1 #{message}
     form.form-signin(method='POST' action='/')
-        img.mb-4(src='/media/logo.png', alt='', width='72', height='72')
         h1.h3.mb-3.font-weight-normal Please sign in
         label.sr-only(for='inputEmail') Email address
         input#inputEmail.form-control(type='email', placeholder='Email address', required='', autofocus='', name='email')

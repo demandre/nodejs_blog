@@ -1,23 +1,11 @@
-extends ../node_modules/pug-bootstrap/_bootstrap.pug
-block body
-    block header
-    nav.navbar.navbar-default.navbar-fixed-top
-        .container
-            #navbar.navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li
-                        a(href='/articles') Articles
-                    li
-                        a(href='/publish') Publish
-                    li
-                        a(href='/users') Users
-                    li
-                        a(href='/comments') Comments
-                    li
-                        a(href='/user') Account
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href='./logout')
-                            | Logout
-                            span.sr-only (current)
-    block content
+extends ./layout.pug
+append header
+    div.d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm
+        img.my-0.mr-md-auto(src='/media/logo.png', alt='', width='52', height='52')
+        nav.my-2.my-md-0.mr-md-3
+            a.p-2.text-dark(href='/articles') Articles
+            a.p-2.text-dark(href='/publish') Publish
+            a.p-2.text-dark(href='/users') Users
+            a.p-2.text-dark(href='/comments') Comments
+            a.p-2.text-dark(href='/user') Account
+        a.btn.btn-outline-danger(href='/logout') Log out
