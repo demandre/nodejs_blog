@@ -2,7 +2,7 @@ create table user (
     user_id int unsigned auto_increment primary key not null,
     name varchar(100),
     first_name varchar(100),
-    mail varchar(255),
+    mail varchar(255) unique,
     password_hash varchar(255),
     avatar_img_path varchar(255),
     is_admin boolean
