@@ -3,7 +3,7 @@ insert into user (name,first_name,mail,password_hash,avatar_img_path,is_admin) v
     'joris',
     'admin@joris.com',
     SHA2('admin', 256),
-    'media/avatar/joris_admin.jpg',
+    'https://www.sweetshop.be/2605-thickbox_default/joris-rhum-1-kg.jpg',
     1
 );
 
@@ -12,7 +12,7 @@ insert into article (title,content,author_id,date,cover_img_path) values (
     'This is my first blog article. I am really proud it works great.',
     1,
     NOW(),
-    'media/cover/first_blog_article'
+    'https://www.sweetshop.be/2605-thickbox_default/joris-rhum-1-kg.jpg'
 );
 
 insert into comment (content,author_id,article_id,date) values (
