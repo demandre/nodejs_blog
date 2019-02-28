@@ -69,10 +69,11 @@ natural join article_category
 where category_id = 1
 
 -- find a user
-select name,first_name,mail,avatar_img_path,count(comment) from user
-inner join comment on user.user_id = comment.author_id
-where user.name like '%search%' or user.first_name like '%search'
+select user_id,name,first_name,mail,avatar_img_path,count(comment.author_id) as comment_count from user
+left join comment on user.user_id = comment.author_id
+where user.name like '%search%' or user.first_name like '%search%'
     or user.mail like '%search%'
+group by user.user_id;
 
 -- delete a user
 delete from user
