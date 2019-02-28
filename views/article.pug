@@ -39,4 +39,11 @@ append content
                     ul.list-group
                         li.list-group-item=comment.date
                         li.list-group-item=comment.content
-
+                        li.list-group-item
+                        if is_admin
+                            a.btn.btn-danger(href="/comment/delete/?id=" + comment.comment_id) Delete
+                        else if comment.author_id === user_id
+                            a.btn.btn-danger(href="/comment/delete/?id=" + comment.comment_id) Delete
+                        if comment.author_id === user_id
+                            a.btn.btn-primary(href="/comment/modify/?id=" + comment.comment_id) Modify
+                        form.login-form.form-horizontal(method='post', action='/comment/add/?article_id=' + article.article_id)

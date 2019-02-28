@@ -39,7 +39,7 @@ router.get('/articles/see', function(req, res, next) {
           if(error != null) {
             console.log(error);
           }
-            res.render('article', {'article': articleResults[0], 'comments': commentResults, 'is_admin': req.session.is_admin});
+            res.render('article', {'article': articleResults[0], 'comments': commentResults, 'user_id': req.session.user_id,'is_admin': req.session.is_admin});
         });
       } else {
         res.render('articles', {'message': 'This article does not exists', 'is_admin': req.session.is_admin});
