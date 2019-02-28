@@ -2,7 +2,7 @@ var router = require('express').Router();
 
 /* Get homepage / login page */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Home', message: 'Hello! Please sign-in' });
+  res.render('index', {'message': 'Hello! Please sign-in' });
 });
 
 /* Post of login form */
@@ -15,7 +15,7 @@ router.post('/', function(req,res) {
 
     res.locals.connection.query(query, function (error, results, fields) {
       if(error != null) {
-        res.render('index', { title: 'Home', message: 'We cannot connect you... Try again later!' });
+        res.render('index', {'message': 'We cannot connect you... Try again later!' });
       }
       if(results.length > 0) {
         // Save in session - connect the user
@@ -24,11 +24,11 @@ router.post('/', function(req,res) {
         // Redirect to user page
         res.redirect('/user');
       } else {
-        res.render('index', { title: 'Home', message: 'Wrong credentials... Try again!' });
+        res.render('index', {'message': 'Wrong credentials... Try again!' });
       }
     });
   } catch {
-    res.render('index', { title: 'Home', message: 'We cannot connect you... Try again later!' });
+    res.render('index', {'message': 'We cannot connect you... Try again later!' });
   }
 });
 
