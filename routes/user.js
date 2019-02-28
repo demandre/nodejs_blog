@@ -1,16 +1,16 @@
 var router = require('express').Router();
 
 /* Get user info */
-router.get('/user', function(req, res, next) {
+router.get('/user', function (req, res) {
   var selectUserQuery = 'SELECT name,first_name,mail,avatar_img_path from user ' +
-      "where user_id=" + req.session.user_id + ";";
+    "where user_id=" + req.session.user_id + ";";
 
-  res.locals.connection.query(selectUserQuery, function (error, results, fields) {
-    if(error != null) {
+  res.locals.connection.query(selectUserQuery, function (error, results) {
+    if (error != null) {
       console.log(error);
       res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
     }
-    if(results.length > 0) {
+    if (results.length > 0) {
       res.render('user', {'user': results[0], 'is_admin': req.session.is_admin});
     } else {
       res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
@@ -19,16 +19,16 @@ router.get('/user', function(req, res, next) {
 });
 
 /* Post user info */
-router.post('/user', function(req, res, next) {
+router.post('/user', function (req, res) {
   var updateUserQuery = "update user " +
-      "set name ='" + req.body.name + "'," +
-      "first_name ='" + req.body.first_name + "'," +
-      "mail = '" + req.body.mail + "'," +
-      "avatar_img_path = '" + req.body.avatar_img_path + "'" +
-      "where user_id=" + req.session.user_id + ";";
+    "set name ='" + req.body.name + "'," +
+    "first_name ='" + req.body.first_name + "'," +
+    "mail = '" + req.body.mail + "'," +
+    "avatar_img_path = '" + req.body.avatar_img_path + "'" +
+    "where user_id=" + req.session.user_id + ";";
 
-  res.locals.connection.query(updateUserQuery, function (error, results, fields) {
-    if(error != null) {
+  res.locals.connection.query(updateUserQuery, function (error, results) {
+    if (error != null) {
       console.log(error);
       res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
     } else {
@@ -38,12 +38,12 @@ router.post('/user', function(req, res, next) {
 });
 
 /* Get user delete */
-router.get('/user/delete', function(req, res, next) {
+router.get('/user/delete', function (req, res) {
   var deleteUserQuery = 'DELETE from user ' +
-      "where user_id=" + req.session.user_id + ";";
+    "where user_id=" + req.session.user_id + ";";
 
-  res.locals.connection.query(deleteUserQuery, function (error, results, fields) {
-    if(error != null) {
+  res.locals.connection.query(deleteUserQuery, function (error, results) {
+    if (error != null) {
       console.log(error);
       res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
     } else {
