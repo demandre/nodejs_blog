@@ -8,11 +8,21 @@ append content
         div.card-body
             ul.list-group
                 li.list-group-item
-                    img.my-0.mr-md-auto(src=article.cover_img_path, alt='', width='200', height='100')
+                    img.my-0.mr-md-auto(src=article.cover_img_path, alt='', width='100%', height='200')
                 li.list-group-item=article.content
                 li.list-group-item=article.date
                 li.list-group-item
                     if is_admin
                         a.btn.btn-primary(href="/articles/modify/?id="+article.article_id) Modify
                         a.btn.btn-danger(href="/articles/delete/?id="+article.article_id) Delete
+    if comments
+        each comment in comments
+            div.card
+                div.card-header
+                    img.my-0.mr-md-auto(src=comment.avatar_img_path, alt='', width='50', height='50')
+                    p=comment.user_name
+            div.card-body
+                ul.list-group
+                    li.list-group-item=comment.date
+                    li.list-group-item=comment.content
 

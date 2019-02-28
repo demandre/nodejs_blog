@@ -25,12 +25,22 @@ router.get('/articles/see', function(req, res, next) {
     var selectArticleQuery = 'SELECT * from article ' +
       "where article_id=" + req.urlParams.id + ";";
 
-    res.locals.connection.query(selectArticleQuery, function (error, results, fields) {
+    res.locals.connection.query(selectArticleQuery, function (error, articleResults, fields) {
       if(error != null) {
+        console.log('error');
         res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
       }
-      if(results.length > 0) {
-        res.render('article', {'article': results[0], 'is_admin': req.session.is_admin});
+      if(articleResults.length > 0) {
+        var selectCommentQuery = 'SELECT comment_id,content,user.name as user_name,author_id,date,avatar_img_path ' +
+          'from comment inner join user on author_id = user_id ' +
+          "where article_id=" + req.urlParams.id + ";";
+
+        res.locals.connection.query(selectCommentQuery, function (error, commentResults, fields) {
+          if(error != null) {
+            console.log(error);
+          }
+            res.render('article', {'article': articleResults[0], 'comments': commentResults, 'is_admin': req.session.is_admin});
+        });
       } else {
         res.render('articles', {'message': 'This article does not exists', 'is_admin': req.session.is_admin});
       }
