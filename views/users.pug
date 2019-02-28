@@ -65,3 +65,24 @@ append content
         div.form-group
             div.col-sm-offset-4.col-sm-8
                 button.login.btn.btn-success(type='submit') Search user
+    if users_message
+        h2=users_message
+    if users
+        each user in users
+            div.card
+                div.card-header=user.firstname
+            div.card-body
+                ul.list-group
+                    li.list-group-item name :
+                        p=user.name
+                    li.list-group-item first name :
+                        p=user.first_name
+                    li.list-group-item mail:
+                        p=user.mail
+                    li.list-group-item avatar :
+                        img.my-0.mr-md-auto(src=user.avatar_img_path, alt='', width='52', height='52')
+                    li.list-group-item comment count:
+                        p=user.comment_count
+                    li.list-group-item
+                        a.btn.btn-primary(href="/users/modify/?id="+user.user_id) Update
+                        a.btn.btn-danger(href="/users/delete/?id="+user.user_id) Delete
