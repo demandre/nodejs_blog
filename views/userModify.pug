@@ -1,0 +1,49 @@
+extends ./header.pug
+append content
+    if message
+        h1= message
+    if user
+        form.login-form.form-horizontal(method='post', action='/users/modify/?id='+user.user_id)
+            div.form-group
+                label.col-sm-4 First Name
+                div.col-sm-8
+                    input.form-control(
+                    placeholder='User first name',
+                    required=true,
+                    name='first_name',
+                    type='text',
+                    value=user.first_name)
+            div.form-group
+                label.col-sm-4 Name
+                div.col-sm-8
+                    input.form-control(placeholder='User name',
+                    required=true,
+                    name='name',
+                    type='text',
+                    value=user.name)
+            div.form-group
+                label.col-sm-4 Mail
+                div.col-sm-8
+                    input.form-control(placeholder='user@mail.com',
+                    required=true,
+                    name='mail',
+                    type='email',
+                    value=user.mail)
+            div.form-group
+                label.col-sm-4 Password
+                div.col-sm-8
+                    input.form-control(placeholder='User password',
+                    required=true,
+                    name='password',
+                    type='password')
+            div.form-group
+                label.col-sm-4 Avatar link
+                div.col-sm-8
+                    input.form-control(placeholder='User avatar link',
+                    required=true,
+                    name='avatar_img_path',
+                    type='text',
+                    value=user.avatar_img_path)
+            div.form-group
+                div.col-sm-offset-4.col-sm-8
+                    button.login.btn.btn-primary(type='submit') Save
