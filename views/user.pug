@@ -2,49 +2,50 @@ extends ./header.pug
 append content
     if message
         h1= message
-    form.login-form.form-horizontal(method='post', action='/user')
-        div.form-group
-            label.col-sm-4 First Name
-            div.col-sm-8
-                input.form-control(
-                placeholder='Your first name',
-                required=true,
-                name='first_name',
-                type='text',
-                value=user.first_name)
-        div.form-group
-            label.col-sm-4 Name
-            div.col-sm-8
-                input.form-control(placeholder='Your name',
-                required=true,
-                name='name',
-                type='text',
-                value=user.name)
-        div.form-group
-            label.col-sm-4 Mail
-            div.col-sm-8
-                input.form-control(placeholder='your@mail.com',
-                required=true,
-                name='mail',
-                type='mail',
-                value=user.mail)
-        div.form-group
-            label.col-sm-4 Password
-            div.col-sm-8
-                input.form-control(placeholder='Your password',
-                required=true,
-                name='password',
-                type='password')
-        div.form-group
-            label.col-sm-4 Avatar link
-            div.col-sm-8
-                input.form-control(placeholder='Your avatar link',
-                required=true,
-                name='avatar_img_path',
-                type='text',
-                value=user.avatar_img_path)
-        div.form-group
-            div.col-sm-offset-4.col-sm-8
-                button.login.btn.btn-primary(type='submit') Save
-    a(href='/user/delete')
-        button.login.btn.btn-danger DELETE MY ACCOUNT
+    if user
+        form.login-form.form-horizontal(method='post', action='/user')
+            div.form-group
+                label.col-sm-4 First Name
+                div.col-sm-8
+                    input.form-control(
+                    placeholder='Your first name',
+                    required=true,
+                    name='first_name',
+                    type='text',
+                    value=user.first_name)
+            div.form-group
+                label.col-sm-4 Name
+                div.col-sm-8
+                    input.form-control(placeholder='Your name',
+                    required=true,
+                    name='name',
+                    type='text',
+                    value=user.name)
+            div.form-group
+                label.col-sm-4 Mail
+                div.col-sm-8
+                    input.form-control(placeholder='your@mail.com',
+                    required=true,
+                    name='mail',
+                    type='mail',
+                    value=user.mail)
+            div.form-group
+                label.col-sm-4 Password
+                div.col-sm-8
+                    input.form-control(placeholder='Your password',
+                    required=true,
+                    name='password',
+                    type='password')
+            div.form-group
+                label.col-sm-4 Avatar link
+                div.col-sm-8
+                    input.form-control(placeholder='Your avatar link',
+                    required=true,
+                    name='avatar_img_path',
+                    type='text',
+                    value=user.avatar_img_path)
+            div.form-group
+                div.col-sm-offset-4.col-sm-8
+                    button.login.btn.btn-primary(type='submit') Save
+        a(href='/user/delete')
+            button.login.btn.btn-danger DELETE MY ACCOUNT

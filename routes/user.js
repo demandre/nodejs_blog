@@ -17,4 +17,22 @@ router.get('/user', function(req, res, next) {
   });
 });
 
+/* Post user info */
+router.post('/user', function(req, res, next) {
+  var updateUserQuery = "update user " +
+      "set name ='" + req.body.name + "'," +
+      "first_name ='" + req.body.first_name + "'," +
+      "mail = '" + req.body.mail + "'," +
+      "avatar_img_path = '" + req.body.avatar_img_path + "'" +
+      "where user_id=" + req.session.user_id + ";";
+
+  res.locals.connection.query(updateUserQuery, function (error, results, fields) {
+    if(error != null) {
+      console.log(error);
+      res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
+    } else {
+      res.render('user', {'message': 'Your data has been changed!', 'is_admin': req.session.is_admin});
+    }
+  });
+});
 module.exports = router;
