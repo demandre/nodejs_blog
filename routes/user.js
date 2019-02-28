@@ -7,6 +7,7 @@ router.get('/user', function(req, res, next) {
 
   res.locals.connection.query(selectUserQuery, function (error, results, fields) {
     if(error != null) {
+      console.log(error);
       res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
     }
     if(results.length > 0) {
@@ -43,6 +44,7 @@ router.get('/user/delete', function(req, res, next) {
 
   res.locals.connection.query(deleteUserQuery, function (error, results, fields) {
     if(error != null) {
+      console.log(error);
       res.render('user', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
     } else {
       res.render('index', {'message': 'You have been deleted'});

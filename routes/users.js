@@ -70,6 +70,7 @@ router.get('/users/modify', function(req, res, next) {
 
             res.locals.connection.query(selectUserQuery, function (error, results, fields) {
                 if(error != null) {
+                    console.log(error);
                     res.render('users', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
                 }
                 if(results.length > 0) {
@@ -98,6 +99,7 @@ router.post('/users/modify', function(req, res, next) {
 
             res.locals.connection.query(updateUserQuery, function (error, results, fields) {
                 if(error != null) {
+                    console.log(error);
                     res.render('users', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
                 } else {
                     res.render('users', {'message': 'User has been updated!', 'is_admin': req.session.is_admin});
@@ -120,6 +122,7 @@ router.get('/users/delete', function(req, res, next) {
 
             res.locals.connection.query(deleteUserQuery, function (error, results, fields) {
                 if(error != null) {
+                  console.log(error);
                     res.render('users', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
                 } else {
                     res.render('users', {'message': 'User has been deleted', 'is_admin': req.session.is_admin});

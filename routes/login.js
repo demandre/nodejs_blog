@@ -15,6 +15,7 @@ router.post('/', function(req,res) {
 
     res.locals.connection.query(query, function (error, results, fields) {
       if(error != null) {
+        console.log(error);
         res.render('index', {'message': 'We cannot connect you... Try again later!' });
       }
       if(results.length > 0) {

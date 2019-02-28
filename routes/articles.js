@@ -27,7 +27,7 @@ router.get('/articles/see', function(req, res, next) {
 
     res.locals.connection.query(selectArticleQuery, function (error, articleResults, fields) {
       if(error != null) {
-        console.log('error');
+        console.log(error);
         res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
       }
       if(articleResults.length > 0) {
@@ -59,7 +59,7 @@ router.get('/articles/modify', function(req, res, next) {
 
       res.locals.connection.query(selectArticleQuery, function (error, articleResults, fields) {
         if(error != null) {
-          console.log('error');
+          console.log(error);
           res.render('articleModify', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
         }
         if(articleResults.length > 0) {
@@ -89,7 +89,7 @@ router.post('/articles/modify', function(req, res, next) {
 
       res.locals.connection.query(updateArticleQuery, function (error, articleResults, fields) {
         if(error != null) {
-          console.log('error');
+          console.log(error);
           res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
         } else {
           res.render('articles', {'message': 'The article has been updated!', 'is_admin': req.session.is_admin});
@@ -112,7 +112,7 @@ router.get('/articles/delete', function(req, res, next) {
 
       res.locals.connection.query(deleteArticleQuery, function (error, articleResults, fields) {
         if(error != null) {
-          console.log('error');
+          console.log(error);
           res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
         } else {
           res.render('articles', {'message': 'The article has been deleted!', 'is_admin': req.session.is_admin});
