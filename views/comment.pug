@@ -1,0 +1,20 @@
+extends ./header.pug
+append content
+    if message
+        h1= message
+    h2 Modify your comment
+    if comment
+        form.login-form.form-horizontal(method='post', action='/comment/modify/?id='+comment.comment_id)
+            div.card
+                div.card-header Your comment
+            div.card-body
+                div.form-group
+                    label.col-sm-4
+                    div.col-sm-8
+                        textarea.form-control(placeholder='Your comment',
+                        required=true,
+                        name='content')=comment.content
+
+                div.form-group
+                    div.col-sm-offset-4.col-sm-8
+                        button.login.btn.btn-primary(type='submit') Modify Comment

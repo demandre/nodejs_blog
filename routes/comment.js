@@ -41,4 +41,47 @@ router.get('/comment/delete', function(req, res, next) {
   }
 });
 
+/* Get modify comment */
+router.get('/comment/modify', function(req, res, next) {
+  if(req.urlParams.id) {
+    var selectCommentQuery = 'SELECT comment_id,content from comment ' +
+      "where comment_id=" + req.urlParams.id + ";";
+
+    res.locals.connection.query(selectCommentQuery, function (error, results, fields) {
+      if(error != null) {
+        console.log(error);
+        res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
+      }
+      if(results.length > 0) {
+        res.render('comment', {'comment': results[0], 'is_admin': req.session.is_admin});
+      } else {
+        res.render('articles', {'message': 'This comment does not exists', 'is_admin': req.session.is_admin});
+      }
+    });
+  } else {
+    res.redirect('/articles');
+  }
+});
+
+/* Post modify comment */
+router.post('/comment/modify', function(req, res, next) {
+  if(req.urlParams.id) {
+    var updateCommentQuery = "update comment " +
+      "set content ='" + req.body.content + "'," +
+      "date = NOW() " +
+      "where comment_id=" + req.urlParams.id + ";";
+
+    res.locals.connection.query(updateCommentQuery, function (error, results, fields) {
+      if(error != null) {
+        console.log(error);
+        res.render('articles', {'message': 'An error happened... Try again later!', 'is_admin': req.session.is_admin});
+      } else {
+        res.render('articles', {'message': 'The comment has been updated!', 'is_admin': req.session.is_admin});
+      }
+    });
+  } else {
+    res.redirect('/articles');
+  }
+});
+
 module.exports = router;
